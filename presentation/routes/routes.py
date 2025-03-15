@@ -33,7 +33,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             elif len(parts) == 6 and parts[3] == 'pages':
                 book_id = int(parts[2])
                 page_number = int(parts[4])
-                content_type = str(parts[5])
+                if len(parts) > 5:
+                    content_type = parts[5] 
                 try:
                     page = controller.get_book_page(book_id, page_number, content_type)
                     self._set_response()
